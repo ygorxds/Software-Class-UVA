@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Lojas Brasileiras</title>
+   <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+   <link rel="stylesheet" href="css/responsive.css">
+   <link rel="icon" href="images/fevicon.png" type="image/gif" />
+   <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+   <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+   <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+   <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+   <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+   <link rel="stylesheet" href="css/owl.carousel.min.css">
+   <link rel="stylesheet" href="css/owl.theme.default.min.css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+</head>
+<body>
+   <div class="banner_bg_main">
+      <div class="container">
+         <div class="header_section_top">
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="custom_menu">
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="logo_section">
+         <div class="container">
+            <div class="row">
+               <div class="col-sm-12">
+                  <div class="logo"><a href="index.html"><b><h1 style="color: azure;">LOJAS BRASILEIRAS</h1></b></a></div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="header_section">
+         <div class="container">
+            <div class="containt_main">
+               <div id="mySidenav" class="sidenav">
+                  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                  <a href="index.html">Inicio</a>
+                  <a href="crud.html">Add produtos</a>
+                  <a href="electronic.html">Lista de produtos</a>
+               </div>
+               <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
+               <div class="main">
+                  <div class="input-group">
+                     <input type="text" class="form-control" placeholder="Procurar algum produto?">
+                     <div class="input-group-append">
+                        <button class="btn btn-secondary" type="button" style="background-color: #f26522; border-color:#f26522 ">
+                        <i class="fa fa-search"></i>
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="fashion_section">
+      <div class="container">
+         <h1 class="page_title" style="margin-top: 2rem;">Lista de Produtos</h1>
+         <table id="produtoTable" class="table table-striped">
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>Descrição</th>
+                  <th>Preço</th>
+               </tr>
+            </thead>
+            <tbody>
+            </tbody>
+         </table>
+      </div>
+   </div>
+   <script src="js/jquery.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/bootstrap.bundle.min.js"></script>
+   <script src="js/jquery-3.0.0.min.js"></script>
+   <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+   <script src="js/custom.js"></script>
+   <script>
+      function exibirProdutos(produtos) {
+         var tableBody = document.getElementById('produtoTable').getElementsByTagName('tbody')[0];
+
+         produtos.forEach(function(produto) {
+            var row = tableBody.insertRow();
+
+            var idCell = row.insertCell(0);
+            idCell.textContent = produto.ID_PRODUTO;
+
+            var nomeCell = row.insertCell(1);
+            nomeCell.textContent = produto.NOME;
+
+            var descricaoCell = row.insertCell(2);
+            descricaoCell.textContent = produto.DESCRICAO;
+
+            var precoCell = row.insertCell(3);
+            precoCell.textContent = produto.PRECO;
+         });
+      }
+
+      fetch("http://localhost:5000/api/produto/listarProdutos")
+         .then(function(response) {
+            if (response.ok) {
+               return response.json();
+            } else {
+               throw new Error("Erro na resposta do servidor");
+            }
+         })
+         .then(function(data) {
+            exibirProdutos(data);
+         })
+         .catch(function(error) {
+            console.error("Erro:", error);
+         });
+   </script>
+</body>
+</html>

@@ -70,7 +70,7 @@
                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
                      <a href="index.html">Inicio</a>
                      <a href="crud.html">Add produtos</a>
-                     <a href="electronic.html">Lista de produtos</a>
+                     <a href="listProduct.html">Lista de produtos</a>
                   </div>
                   <span class="toggle_icon" onclick="openNav()"><img src="images/toggle-icon.png"></span>
                   <div class="main">
@@ -139,8 +139,8 @@
             </div>
             <div class="footer_menu">
                <ul>
-                  <li><a href="#">Cadastre um produto</a></li>
-                  <li><a href="#">Ver todos os produtos</a></li>
+                  <li><a href="crud.html">Cadastre um produto</a></li>
+                  <li><a href="listProduct.html">Ver todos os produtos</a></li>
                </ul>
             </div>
             <div class="social_icon">
@@ -188,10 +188,6 @@
                nome: nome,
                descricao: descricao,
                preco: preco,
-               id_estoque: Math.random(),
-               id_venda: Math.random(),
-               id_produto: Math.random(),
-               id_funcionario:Math.random()
             };
 
             // Enviar os dados para o servidor
