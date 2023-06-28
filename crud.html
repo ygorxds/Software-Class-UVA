@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta name="viewport" content="initial-scale=1, maximum-scale=1">
       <!-- site metas -->
-      <title>Eflyer</title>
+      <title>Lojas Brasileiras</title>
       <meta name="keywords" content="">
       <meta name="description" content="">
       <meta name="author" content="">
@@ -56,7 +56,7 @@
             <div class="container">
                <div class="row">
                   <div class="col-sm-12">
-                     <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+                     <div class="logo"><a href="index.html"><b><h1 style="color: azure;">LOJAS BRASILEIRAS</h1></b></a></div>
                   </div>
                </div>
             </div>
@@ -111,7 +111,7 @@
       <div class="fashion_section" style="margin-left: 3rem;">
          <div class="container">
             <h1 class="page_title" style="margin-top: 1rem;">Cadastro de Produto</h1>
-            <form>
+            <form id="produtoForm">
                <div class="form-group">
                   <label for="nome">Nome:</label>
                   <input type="text" class="form-control" id="nome" name="nome" required>
@@ -124,57 +124,101 @@
                   <label for="preco">Preço:</label>
                   <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
                </div>
-               <div class="form-group">
-                  <label for="preco">Nome do Vendedor</label>
-                  <input type="number" class="form-control" id="preco" name="preco" step="0.01" required>
-               </div>
                <button type="submit" class="btn btn-outline-dark">Cadastrar</button>
             </form>
          </div>
       </div>
       <!-- fashion section end -->
-           <!-- footer section start -->
-           <div class="footer_section layout_padding">
-            <div class="container">
-               <div class="footer_logo"><a href="index.html"><img src="images/footer-logo.png"></a></div>
-               <div class="input_bt">
-                  <input type="text" class="mail_bt" placeholder="Seu email" name="Seu email">
-                  <span class="subscribe_bt" id="basic-addon2"><a href="#">Se inscrever</a></span>
-               </div>
-               <div class="footer_menu">
-                  <ul>
-                     <li><a href="#">Cadastre um produto</a></li>
-                     <li><a href="#">Ver todos os produtos</a></li>
-                  </ul>
-               </div>
-               <div class="location_main">Caso precise, ligue para o nosso suporte : <a href="#">+55 21 4002-8922</a></div>
+      <!-- footer section start -->
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="logo"><a href="index.html"><b><h1 style="color: azure;">LOJAS BRASILEIRAS</h1></b></a></div>
+            <div class="input_bt">
+               <input type="text" class="mail_bt" placeholder="Seu email" name="Seu email">
+               <span class="subscribe_bt" id="basic-addon2"><a href="#">Se inscrever</a></span>
+            </div>
+            <div class="footer_menu">
+               <ul>
+                  <li><a href="#">Cadastre um produto</a></li>
+                  <li><a href="#">Ver todos os produtos</a></li>
+               </ul>
+            </div>
+            <div class="social_icon">
+               <ul>
+                  <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                  <li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+               </ul>
             </div>
          </div>
-         <!-- footer section end -->
-         <!-- copyright section start -->
-         <div class="copyright_section">
-            <div class="container">
-               <p class="copyright_text">© 2023 All Rights Reserved. Grupo x</p>
-            </div>
-         </div>
-         <!-- copyright section end -->
-         <!-- Javascript files-->
-         <script src="js/jquery.min.js"></script>
-         <script src="js/popper.min.js"></script>
-         <script src="js/bootstrap.bundle.min.js"></script>
-         <script src="js/jquery-3.0.0.min.js"></script>
-         <script src="js/plugin.js"></script>
-         <!-- sidebar -->
-         <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-         <script src="js/custom.js"></script>
-         <script>
-            function openNav() {
-              document.getElementById("mySidenav").style.width = "250px";
-            }
-            
-            function closeNav() {
-              document.getElementById("mySidenav").style.width = "0";
-            }
-         </script>
-      </body>
-   </html>
+      </div>
+      <!-- footer section end -->
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <!-- sidebar -->
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+      <!-- javascript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+         function openNav() {
+           document.getElementById("mySidenav").style.width = "250px";
+         }
+         
+         function closeNav() {
+           document.getElementById("mySidenav").style.width = "0";
+         }
+
+         // Adicionar evento de envio do formulário
+         document.getElementById("produtoForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // Impede o envio do formulário
+
+            // Obter os dados do formulário
+            var nome = document.getElementById("nome").value;
+            var descricao = document.getElementById("descricao").value;
+            var preco = document.getElementById("preco").value;
+
+            // Criar um objeto com os dados do formulário
+            var formData = {
+               nome: nome,
+               descricao: descricao,
+               preco: preco,
+               id_estoque: Math.random(),
+               id_venda: Math.random(),
+               id_produto: Math.random(),
+               id_funcionario:Math.random()
+            };
+
+            // Enviar os dados para o servidor
+            fetch("http://localhost:5000/api/produto/criarProduto", {
+               method: "POST",
+               body: JSON.stringify(formData),
+               headers: {
+                  "Content-Type": "application/json"
+               }
+            })
+            .then(function(response) {
+               if (response.ok) {
+                  // Exibir uma mensagem de sucesso
+                  Swal.fire("Sucesso!", "Produto cadastrado com sucesso!", "success");
+
+                  // Limpar o formulário
+                  document.getElementById("produtoForm").reset();
+               } else {
+                  // Exibir uma mensagem de erro
+                  Swal.fire("Erro!", "Ocorreu um erro ao cadastrar o produto.", "error");
+               }
+            })
+            .catch(function(error) {
+               // Exibir uma mensagem de erro
+               Swal.fire("Erro!", "Ocorreu um erro ao cadastrar o produto.", "error");
+            });
+         });
+      </script>
+   </body>
+</html>
